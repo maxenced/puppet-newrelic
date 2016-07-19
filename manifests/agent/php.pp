@@ -91,12 +91,22 @@ class newrelic::agent::php (
     hasstatus  => true,
   }
 
-  ::newrelic::php::newrelic_ini { $newrelic_php_conf_dir:
-    exec_path            => $newrelic_php_exec_path,
-    newrelic_license_key => $newrelic_license_key,
-    before               => [ File['/etc/newrelic/newrelic.cfg'], Service[$newrelic_php_service] ],
-    require              => Package[$newrelic_php_package],
-    notify               => Service[$newrelic_php_service],
+  exec { "/usr/bin/newrelic-install ${newrelic_php_conf_dir}":
+    path     => $newrelic_php_exec_path,
+    command  => "/usr/bin/newrelic-install purge ; NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${newrelic_license_key} /usr/bin/newrelic-install install",
+    provider => 'shell',
+    user     => 'root',
+    group    => 'root',
+    unless   => "grep ${newrelic_license_key} ${newrelic_php_conf_dir}/newrelic.ini",
+    before   => [ File['/etc/newrelic/newrelic.cfg'], Service[$newrelic_php_service] ],
+    require  => Package[$newrelic_php_package],
+    notify   => Service[$newrelic_php_service],
+  }
+
+  file { "${newrelic_php_conf_dir}/newrelic.ini":
+    path    => "${newrelic_php_conf_dir}/newrelic.ini",
+    content => template('newrelic/newrelic.ini.erb'),
+    require => Exec["/usr/bin/newrelic-install ${newrelic_php_conf_dir}"],
   }
 
   file { '/etc/newrelic/newrelic.cfg':
