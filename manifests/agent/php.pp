@@ -103,7 +103,7 @@ class newrelic::agent::php (
     notify   => Service[$newrelic_php_service],
   }
 
-  file { "${newrelic_php_conf_dir}/20-newrelic.ini":
+  file { "${newrelic_php_conf_dir}/newrelic.ini":
     path    => "${newrelic_php_conf_dir}/newrelic.ini",
     content => template('newrelic/newrelic.ini.erb'),
     require => Exec["/usr/bin/newrelic-install ${newrelic_php_conf_dir}"],
