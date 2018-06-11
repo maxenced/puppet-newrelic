@@ -425,7 +425,7 @@ newrelic.browser_monitoring.auto_instrument = <%= @newrelic_ini_browser_monitori
 ;          regardless of what you set here.
 ;
 ;newrelic.transaction_tracer.enabled = true
-<%- if @newrelic_ini_transaction_tracer_enabled -%>
+<%- if @newrelic_ini_transaction_tracer_enabled != nil -%>
 newrelic.transaction_tracer.enabled = <%= @newrelic_ini_transaction_tracer_enabled %>
 <%- end -%>
 
