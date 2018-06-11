@@ -500,7 +500,7 @@ newrelic.transaction_tracer.stack_trace_threshold = <%= @newrelic_ini_transactio
 ;          requesting explain plans is defined below.
 ;
 ;newrelic.transaction_tracer.explain_enabled = true
-<%- if @newrelic_ini_transaction_tracer_explain_enabled -%>
+<%- if @newrelic_ini_transaction_tracer_explain_enabled != nil -%>
 newrelic.transaction_tracer.explain_enabled = <%= @newrelic_ini_transaction_tracer_explain_enabled %>
 <%- end -%>
 
