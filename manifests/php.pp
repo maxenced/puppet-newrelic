@@ -55,7 +55,6 @@ define newrelic::php (
   $newrelic_ini_transaction_tracer_slow_sql              = undef,
   $newrelic_ini_transaction_tracer_stack_trace_threshold = undef,
   $newrelic_ini_transaction_tracer_threshold             = undef,
-  $newrelic_ini_distributed_tracing_enabled              = undef,
   $newrelic_ini_capture_params                           = undef,
   $newrelic_ini_ignored_params                           = undef,
   $newrelic_daemon_cfgfile_ensure                        = 'present',
