@@ -13,6 +13,10 @@
 # [*newrelic_daemon_cfgfile_ensure*]
 #   Specify the Newrelic daemon cfg file state. Change to absent for agent startup mode. Defaults to 'present'. Possible value is 'absent'.
 #
+# [*newrelic_ini_distributed_tracing_enabled*]
+#   Enable or disable distributed tracing. When the agent's transaction tracer and distributed tracing features are enabled, the agent will insert headers into outbound requests, and scan incoming requests for distributed tracing headers.
+#
+#
 # Actions:
 #
 # Requires:
@@ -57,6 +61,7 @@ class newrelic::agent::php (
   $newrelic_ini_transaction_tracer_slow_sql              = undef,
   $newrelic_ini_transaction_tracer_stack_trace_threshold = undef,
   $newrelic_ini_transaction_tracer_threshold             = undef,
+  $newrelic_ini_distributed_tracing_enabled              = undef,
   $newrelic_ini_capture_params                           = undef,
   $newrelic_ini_ignored_params                           = undef,
   $newrelic_ini_webtransaction_name_files                = undef,
