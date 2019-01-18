@@ -552,7 +552,7 @@ newrelic.transaction_tracer.custom = "<%= @newrelic_ini_transaction_tracer_custo
 <%- end -%>
 
 <%- if @newrelic_ini_distributed_tracing_enabled -%>
-newrelic.distributed_tracing_enabled = "<%= @newrelic_ini_distributed_tracing_enabled %>"
+newrelic.distributed_tracing_enabled = <%= @newrelic_ini_distributed_tracing_enabled %>
 <%- end -%>
 
 ;
